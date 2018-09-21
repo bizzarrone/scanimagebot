@@ -21,12 +21,15 @@ def on_chat_message(msg):
         txt = msg['text']
 
         if txt.startswith('/scan'):
-            SCANIMAGE .sendMessage(chat_id, 'Eseguo scansione')
+            SCANIMAGE.sendMessage(chat_id, 'Eseguo scansione')
+            os.system("scanimage --resolution 150 -y 297 -x 215 --format jpeg -p > scan.jpg")
+            f = open( "scan.jpg", 'rb')
+     	    SCANIMAGE.sendPhoto(chat_id, f)
 
         elif txt.startswith('/info'):
                 message = 'Ciao %s, '
                 message = message + '!\nSono un bot per eseguire scansioni '
-                message = message + 'da uno scanner collegato.\nVersione %s '
+                message = message + 'tramite scanner collegato via USB.\nVersione %s '
                 message = message % (name, __version__)
                 SCANIMAGE.sendMessage(chat_id, message)
 
