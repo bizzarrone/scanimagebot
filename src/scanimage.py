@@ -8,7 +8,7 @@ import time
 import requests
 import telepot
 
-__version__ = '0.1'
+__version__ = '0.1.1'
 
 
 def on_chat_message(msg):
